@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mab7lsg60q5u"
+path="res://.godot/imported/1-25. The Undersea.mp3-f5dbc3ecc0ca264b5bb3b6287cc54ec9.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/1-25. The Undersea.mp3"
+dest_files=["res://.godot/imported/1-25. The Undersea.mp3-f5dbc3ecc0ca264b5bb3b6287cc54ec9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

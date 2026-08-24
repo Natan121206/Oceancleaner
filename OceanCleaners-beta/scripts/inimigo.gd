@@ -39,6 +39,7 @@ var is_attacking: bool = false # se está NO MEIO da animação de ataque agora
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var som_morte: AudioStreamPlayer2D = $SomMorte
 
 
 func _ready() -> void:
@@ -182,6 +183,7 @@ func _die() -> void:
 
 	modulate = Color(1, 1, 1)
 	died.emit()
+	som_morte.play()
 
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)

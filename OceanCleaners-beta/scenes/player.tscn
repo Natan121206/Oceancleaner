@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://nshov8hsl060" path="res://scripts/abilities/ability_mordida.gd" id="3_mordida"]
 [ext_resource type="Script" uid="uid://c4bdm52o18twe" path="res://scripts/abilities/ability_redemoinho.gd" id="4_redemoinho"]
 [ext_resource type="Script" uid="uid://bdi3dcmygdkdn" path="res://scripts/abilities/ability_jato_bolhas.gd" id="5_bolhas"]
+[ext_resource type="AudioStream" uid="uid://p4w3ccqhea5p" path="res://assets/sfx/lolo_s-shoot-474072.mp3" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://cqmbic8cd44do" path="res://assets/sfx/spacey_novanox-charge-up-sound-effect-447383.mp3" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://blit54tc4ci3g" path="res://assets/sfx/alphix-game-over-417465.mp3" id="8_smehm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
 radius = 28.01785
@@ -270,3 +273,12 @@ script = ExtResource("5_bolhas")
 player_path = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="player/Habilidades/JatoBolhas" unique_id=1997318869]
+
+[node name="SomAtaque" type="AudioStreamPlayer2D" parent="player" unique_id=1032503775]
+stream = ExtResource("6_tuyoq")
+
+[node name="SomDano" type="AudioStreamPlayer2D" parent="player" unique_id=1458448809]
+stream = ExtResource("7_fjrip")
+
+[node name="SomGameOver" type="AudioStreamPlayer2D" parent="player" unique_id=983973973]
+stream = ExtResource("8_smehm")

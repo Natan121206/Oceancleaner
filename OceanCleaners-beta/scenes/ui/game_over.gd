@@ -8,6 +8,8 @@ func _ready() -> void:
 	%RetryButton.pressed.connect(_on_retry_pressed)
 	%MenuButton.pressed.connect(_on_menu_pressed)
 	%RetryButton.grab_focus()
+	
+	MusicaFundo.stream_paused = true
 
 	# Recupera os resultados da partida anterior.
 	_update_match_results()
@@ -33,6 +35,8 @@ func _on_retry_pressed() -> void:
 	# Remove os resultados da partida anterior.
 	get_tree().remove_meta("inimigos_derrotados")
 	get_tree().remove_meta("tempo_sobrevivido")
+	
+	MusicaFundo.stream_paused = false
 
 	get_tree().change_scene_to_file(CENA_JOGO)
 

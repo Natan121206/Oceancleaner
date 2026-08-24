@@ -26,6 +26,10 @@ var health: int
 # 4. Referência Direta ao AnimationPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_area: Area2D = $AttackArea
+@onready var som_ataque: AudioStreamPlayer2D = $SomAtaque
+@onready var som_dano: AudioStreamPlayer2D = $SomDano
+@onready var som_game_over: AudioStreamPlayer2D = $SomGameOver
+
 
 
 func _ready() -> void:
@@ -100,6 +104,7 @@ func perform_bite_attack(target_position: Vector2) -> void:
 	if state == State.ATTACK or state == State.DEAD:
 		return
 	state = State.ATTACK
+	som_ataque.play()
 
 	var attack_direction: Vector2 = global_position.direction_to(target_position).normalized()
 
@@ -162,6 +167,7 @@ func take_damage(amount: int) -> void:
 		return
 
 	health -= amount
+	som_dano.play()
 	if health <= 0:
 		health = 0
 		health_changed.emit(health, max_health)
@@ -185,9 +191,13 @@ func _die() -> void:
 
 	# Trava os controles e mostra visualmente que o jogador morreu
 	set_physics_process(false)
+	som_game_over.play()
 	var tween := create_tween()
 	tween.tween_property(self, "modulate", Color(1.0, 0.25, 0.25, 1.0), 0.15)
 	tween.tween_property(self, "modulate:a", 0.0, 0.6)
 	await tween.finished
+	
+	if som_game_over.playing:
+		await som_game_over.finished
 
 	get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")

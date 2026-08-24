@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dm5c0q66c6b35" path="res://scenes/ui/start_screen.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://btfvsqsp46d87" path="res://assets/ui/start_bg.png" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://dtibh58ql6x3w" path="res://assets/ui/shark_hero.png" id="3_shark"]
+[ext_resource type="AudioStream" uid="uid://m7otv8pndgaw" path="res://assets/sfx/Home Sweet Home.mp3" id="4_kolwf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
 bg_color = Color(0.0627451, 0.6039216, 0.6039216, 1)
@@ -95,3 +96,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 16
 text = "Sair"
+
+[node name="MusicaLobby" type="AudioStreamPlayer" parent="." unique_id=1209404992]
+stream = ExtResource("4_kolwf")
+autoplay = true

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bm8hni41eq27i"]
+
+[ext_resource type="AudioStream" uid="uid://mab7lsg60q5u" path="res://assets/sfx/1-25. The Undersea.mp3" id="1_denxe"]
+
+[node name="MusicaFundo" type="AudioStreamPlayer" unique_id=1816319011]
+stream = ExtResource("1_denxe")
+autoplay = true

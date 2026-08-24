@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6h36jkgdylf2" path="res://scripts/inimigo.gd" id="1_inim"]
 [ext_resource type="Texture2D" uid="uid://ddwvyfr6ueeor" path="res://assets/_unused/4b4ea8e0-d8d3-4920-b838-dc87afa85e7a.png" id="2_61lki"]
+[ext_resource type="AudioStream" uid="uid://bctrk8nmpm1nu" path="res://assets/sfx/lumora_studios-pixel-explosion-319166.mp3" id="3_21tsg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_inim"]
 radius = 30.016663
@@ -94,3 +95,6 @@ shape = SubResource("CircleShape2D_61lki")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=138493514]
 libraries/ = SubResource("AnimationLibrary_inim")
+
+[node name="SomMorte" type="AudioStreamPlayer2D" parent="." unique_id=907409173]
+stream = ExtResource("3_21tsg")
