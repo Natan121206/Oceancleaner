@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Inimigo
 
-signal died
+signal died(inimigo: Inimigo)
 
 # ==============================
 #  INIMIGO - Máquina de Estados
@@ -22,6 +22,9 @@ enum State {
 @export var speed: float = 90.0
 @export var damage: int = 10
 @export var attack_cooldown: float = 1.0 # tempo entre ataques
+
+@export_category("Recompensas")
+@export var xp_reward: int = 5 # quantidade de XP concedida ao morrer
 
 @export_category("IA")
 @export var detection_range: float = 800.0 # distância pra começar a perseguir
@@ -182,12 +185,17 @@ func _die() -> void:
 		collision_shape.set_deferred("disabled", true)
 
 	modulate = Color(1, 1, 1)
-	died.emit()
+
+	# Informa ao Gerenciador qual inimigo morreu,
+	# permitindo que ele receba o XP correspondente.
+	died.emit(self)
+
 	som_morte.play()
 
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(self, "scale", scale * 0.7, 0.5)
+
 	# Não usamos queue_free() aqui: o inimigo faz parte de um pool reaproveitável
 	# pelo GerenciadorInimigos, então só o escondemos para depois "renascer()".
 	tween.finished.connect(hide)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmkmtfoaq4lsw"]
 
-[ext_resource type="Script" uid="uid://da7r1vqm0thly" path="res://gerenciador_inimigos.gd" id="5_47y7j"]
+[ext_resource type="Script" uid="uid://da7r1vqm0thly" path="res://scenes/gerenciador_inimigos.gd" id="5_47y7j"]
 [ext_resource type="PackedScene" uid="uid://bg25xo1a0vk4p" path="res://scenes/inimigo.tscn" id="5_rrq3k"]
 [ext_resource type="Texture2D" uid="uid://kmvlnhmy08gv" path="res://assets/tiny_swords/Factions/Knights/Buildings/Castle/Gemini_Generated_Image_4kcebs4kcebs4kce.png" id="7_6ip2i"]
 [ext_resource type="PackedScene" uid="uid://56rry3pww12y" path="res://scenes/player.tscn" id="7_o1wkx"]

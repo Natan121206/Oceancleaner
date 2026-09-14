@@ -7,11 +7,23 @@ extends CanvasLayer
 @onready var health_label: Label = %HealthLabel
 @onready var timer_label: Label = %TimerLabel
 @onready var kills_label: Label = %KillsLabel
+@onready var upgrade_panel: Panel = %UpgradePanel
+
+# Elementos da barra de XP
+@onready var xp_bar: ProgressBar = %XPBar
+@onready var xp_label: Label = %XPLabel
+@onready var level_label: Label = %LevelLabel
 
 var player: Player
 var gerenciador: Node2D
+
 var elapsed_time: float = 0.0
+
+# Tween responsável pela animação da barra de vida
 var health_tween: Tween
+
+# Tween responsável pela animação da barra de XP
+var xp_tween: Tween
 
 
 func _ready() -> void:
@@ -35,10 +47,26 @@ func _ready() -> void:
 		gerenciador = get_node_or_null(gerenciador_path) as Node2D
 
 	if is_instance_valid(gerenciador):
+		# Conecta o contador de inimigos derrotados
 		gerenciador.inimigo_derrotado.connect(_on_inimigo_derrotado)
 		_on_inimigo_derrotado(gerenciador.total_derrotados)
+
+		# Conecta o sistema de XP
+		gerenciador.xp_changed.connect(_on_xp_changed)
+
+		# Inicializa a barra de XP com os valores atuais
+		_on_xp_changed(
+			gerenciador.xp_atual_nivel,
+			gerenciador.xp_necessario,
+			gerenciador.nivel_atual
+		)
+		gerenciador.nivel_subiu.connect(_on_nivel_subiu)
+		
 	else:
-		push_warning("HUD: não encontrou o gerenciador em '%s' — o contador de derrotados não vai atualizar." % [gerenciador_path])
+		push_warning(
+			"HUD: não encontrou o gerenciador em '%s' — o contador de derrotados e XP não vão atualizar."
+			% [gerenciador_path]
+		)
 
 
 func _process(delta: float) -> void:
@@ -91,10 +119,53 @@ func _on_health_changed(current: int, max_amount: int) -> void:
 		health_bar.modulate = Color(1, 1, 1)
 
 
+# ------------------------------
+# Sistema de XP
+# ------------------------------
+func _on_xp_changed(
+	current_xp: int,
+	required_xp: int,
+	level: int
+) -> void:
+
+	# Define o máximo da barra de acordo com o XP
+	# necessário para o próximo nível.
+	xp_bar.max_value = required_xp
+
+	# Atualiza o texto do XP.
+	xp_label.text = "%d / %d" % [current_xp, required_xp]
+
+	# Atualiza o nível.
+	level_label.text = "Nível %d" % level
+
+	# Interrompe uma animação anterior caso o jogador
+	# ganhe XP novamente antes da animação terminar.
+	if xp_tween and xp_tween.is_valid():
+		xp_tween.kill()
+
+	# Anima suavemente a barra até o novo valor.
+	xp_tween = create_tween()
+	xp_tween.set_trans(Tween.TRANS_QUAD)
+	xp_tween.set_ease(Tween.EASE_OUT)
+
+	xp_tween.tween_property(
+		xp_bar,
+		"value",
+		current_xp,
+		0.4
+	)
+
+
+# ------------------------------
+# Contador de inimigos derrotados
+# ------------------------------
 func _on_inimigo_derrotado(total: int) -> void:
 	kills_label.text = "%d" % total
 
 
+# ------------------------------
+# Resultados da partida
+# ------------------------------
 func _save_match_results() -> void:
 	var total_kills: int = 0
 
@@ -106,8 +177,15 @@ func _save_match_results() -> void:
 	get_tree().set_meta("tempo_sobrevivido", elapsed_time)
 
 
+# ------------------------------
+# Cronômetro
+# ------------------------------
 func _update_timer_label() -> void:
 	var total_seconds: int = int(elapsed_time)
 	var minutes: int = total_seconds / 60
 	var seconds: int = total_seconds % 60
+
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
+
+func _on_nivel_subiu(novo_nivel: int) -> void:
+	upgrade_panel.mostrar_upgrade(novo_nivel)

@@ -201,3 +201,21 @@ func _die() -> void:
 		await som_game_over.finished
 
 	get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
+# ------------------------------
+# Sistema de upgrades
+# ------------------------------
+
+func aumentar_vida_maxima(valor: int) -> void:
+	max_health += valor
+	health += valor
+	health = min(health, max_health)
+
+	health_changed.emit(health, max_health)
+
+
+func aumentar_dano(valor: int) -> void:
+	attack_damage += valor
+
+
+func aumentar_velocidade(valor: float) -> void:
+	speed += valor

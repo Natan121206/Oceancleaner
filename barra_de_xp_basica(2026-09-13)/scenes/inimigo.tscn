@@ -71,6 +71,7 @@ _data = {
 }
 
 [node name="inimigo" type="CharacterBody2D" unique_id=29915603]
+modulate = Color(0.3074179, 0.43489748, 0.87921506, 1)
 texture_filter = 1
 script = ExtResource("1_inim")
 
