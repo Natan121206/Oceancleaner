@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bmkmtfoaq4lsw"]
+
+[ext_resource type="Script" uid="uid://da7r1vqm0thly" path="res://scenes/gerenciador_inimigos.gd" id="5_47y7j"]
+[ext_resource type="PackedScene" uid="uid://bg25xo1a0vk4p" path="res://scenes/inimigo.tscn" id="5_rrq3k"]
+[ext_resource type="Texture2D" uid="uid://kmvlnhmy08gv" path="res://assets/tiny_swords/Factions/Knights/Buildings/Castle/Gemini_Generated_Image_4kcebs4kcebs4kce.png" id="7_6ip2i"]
+[ext_resource type="PackedScene" uid="uid://56rry3pww12y" path="res://scenes/player.tscn" id="7_o1wkx"]
+[ext_resource type="PackedScene" uid="uid://bu4k3fomrqpjb" path="res://scenes/ui/hud.tscn" id="8_hud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47y7j"]
+size = Vector2(1344.123, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrq3k"]
+size = Vector2(40, 918.8947)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etowj"]
+size = Vector2(40, 916.254)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_synxb"]
+size = Vector2(1342.8745, 40)
+
+[node name="testmapa" type="Node2D" unique_id=978370457]
+position = Vector2(72, 15)
+metadata/_edit_horizontal_guides_ = [1522.0, -70.0]
+metadata/_edit_vertical_guides_ = [-48.0, 2481.0]
+
+[node name="GeminiGeneratedImage4Kcebs4Kcebs4Kce" type="Sprite2D" parent="." unique_id=426541780]
+position = Vector2(1123, 670)
+scale = Vector2(2.0031645, 1.8935791)
+texture = ExtResource("7_6ip2i")
+
+[node name="LimitesMapa" type="StaticBody2D" parent="GeminiGeneratedImage4Kcebs4Kcebs4Kce" unique_id=1984831670]
+
+[node name="ParedeCima" type="CollisionShape2D" parent="GeminiGeneratedImage4Kcebs4Kcebs4Kce/LimitesMapa" unique_id=1122531769]
+position = Vector2(0.6241455, -438.32343)
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_47y7j")
+debug_color = Color(0.7965479, 0.4186718, 0.18719077, 0.41960785)
+
+[node name="ParedeEsquerda" type="CollisionShape2D" parent="GeminiGeneratedImage4Kcebs4Kcebs4Kce/LimitesMapa" unique_id=1224133220]
+position = Vector2(-650.97034, -0.5279846)
+scale = Vector2(1.0000005, 1.0000005)
+shape = SubResource("RectangleShape2D_rrq3k")
+debug_color = Color(0.76858294, 0.4300555, 0.33283618, 0.41960785)
+
+[node name="ParedeDireita" type="CollisionShape2D" parent="GeminiGeneratedImage4Kcebs4Kcebs4Kce/LimitesMapa" unique_id=551056132]
+position = Vector2(651.96844, 1.3201599)
+scale = Vector2(1.000001, 1.0000006)
+shape = SubResource("RectangleShape2D_etowj")
+debug_color = Color(0.7314111, 0.46628034, 0.24450019, 0.41960785)
+
+[node name="ParedeBaixo" type="CollisionShape2D" parent="GeminiGeneratedImage4Kcebs4Kcebs4Kce/LimitesMapa" unique_id=16970805]
+position = Vector2(0.49926758, 438.32343)
+scale = Vector2(1.0000006, 1.0000006)
+shape = SubResource("RectangleShape2D_synxb")
+debug_color = Color(0.7914264, 0.4254623, 0.13477263, 0.41960785)
+
+[node name="player" parent="." unique_id=355656277 instance=ExtResource("7_o1wkx")]
+position = Vector2(1126, 633)
+
+[node name="GerenciadorInimigos" type="Node2D" parent="." unique_id=1524080481 node_paths=PackedStringArray("jogador")]
+script = ExtResource("5_47y7j")
+cena_inimigo = ExtResource("5_rrq3k")
+jogador = NodePath("../player/player")
+
+[node name="HUD" parent="." unique_id=1141076545 instance=ExtResource("8_hud")]
+player_path = NodePath("../player")
+gerenciador_path = NodePath("../GerenciadorInimigos")

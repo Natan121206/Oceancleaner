@@ -1,0 +1,247 @@
+[gd_scene format=3 uid="uid://bu4k3fomrqpjb"]
+
+[ext_resource type="Script" uid="uid://bg3kk1ge7o26" path="res://scenes/ui/hud.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dtibh58ql6x3w" path="res://assets/ui/shark_hero.png" id="2_shark"]
+[ext_resource type="Texture2D" uid="uid://sndc0qq3lxc8" path="res://assets/ui/can_villain.png" id="3_can"]
+[ext_resource type="Script" uid="uid://bk10fuu11h73y" path="res://scenes/ui/upgrade_panel.gd" id="4_8qguk"]
+[ext_resource type="StyleBox" uid="uid://d00tu5i7okqxv" path="res://padraoUpgrade.tres" id="5_gss2c"]
+[ext_resource type="StyleBox" uid="uid://ombwxolvwqfi" path="res://upgradePressed.tres" id="6_h022r"]
+[ext_resource type="StyleBox" uid="uid://gjufq07nqn1" path="res://upgradeHover.tres" id="7_4jqwt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.03137255, 0.078431375, 0.09803922, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fill"]
+bg_color = Color(0.0627451, 0.6039216, 0.6039216, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo48s"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.34901962)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qguk"]
+bg_color = Color(0.25490198, 0.4117647, 0.88235295, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.73333335)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD" type="CanvasLayer" unique_id=461750787]
+script = ExtResource("1_script")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1130598569]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="TopBar" type="HBoxContainer" parent="Margin" unique_id=346337279]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="VidaBox" type="HBoxContainer" parent="Margin/TopBar" unique_id=437914325]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="SharkIcon" type="TextureRect" parent="Margin/TopBar/VidaBox" unique_id=428857490]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_shark")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HealthBarContainer" type="VBoxContainer" parent="Margin/TopBar/VidaBox" unique_id=627315804]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="HealthBar" type="ProgressBar" parent="Margin/TopBar/VidaBox/HealthBarContainer" unique_id=225078740]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fill")
+value = 100.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="Margin/TopBar/VidaBox/HealthBarContainer" unique_id=548337764]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8392157, 0.9019608, 0.9137255, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "100 / 100"
+
+[node name="TimerCenter" type="CenterContainer" parent="Margin/TopBar" unique_id=21292428]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimerLabel" type="Label" parent="Margin/TopBar/TimerCenter" unique_id=1266788651]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.9882353, 1, 1)
+theme_override_colors/font_outline_color = Color(0.023529412, 0.09411765, 0.13333334, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "00:00"
+
+[node name="KillsBox" type="HBoxContainer" parent="Margin/TopBar" unique_id=1178675464]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="KillsLabel" type="Label" parent="Margin/TopBar/KillsBox" unique_id=1790909645]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.9882353, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "0"
+
+[node name="CanIcon" type="TextureRect" parent="Margin/TopBar/KillsBox" unique_id=1639595026]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_can")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="XPContainer" type="VBoxContainer" parent="Margin" unique_id=939755095]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 2
+
+[node name="LevelLabel" type="Label" parent="Margin/XPContainer" unique_id=93215861]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XPLabel" type="Label" parent="Margin/XPContainer" unique_id=624988095]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 50"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="XPBar" type="ProgressBar" parent="Margin/XPContainer" unique_id=333845729]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 22)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bo48s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8qguk")
+show_percentage = false
+
+[node name="UpgradePanel" type="Panel" parent="." unique_id=1436158752]
+unique_name_in_owner = true
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_8qguk")
+
+[node name="DarkBackground" type="ColorRect" parent="UpgradePanel" unique_id=289554524]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.64705884)
+
+[node name="CenterContainer" type="CenterContainer" parent="UpgradePanel" unique_id=1820651387]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradePanel/CenterContainer" unique_id=1702866056]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="UpgradePanel/CenterContainer/VBoxContainer" unique_id=213961805]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+uppercase = true
+
+[node name="DescriptionLabel" type="Label" parent="UpgradePanel/CenterContainer/VBoxContainer" unique_id=1929165367]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradePanel/CenterContainer/VBoxContainer" unique_id=1854316962]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="VidaButton" type="Button" parent="UpgradePanel/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1172887059]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("5_gss2c")
+theme_override_styles/pressed = ExtResource("6_h022r")
+theme_override_styles/hover = ExtResource("7_4jqwt")
+text = "❤️ VIDA
+
++20 Vida Máxima"
+
+[node name="DanoButton" type="Button" parent="UpgradePanel/CenterContainer/VBoxContainer/HBoxContainer" unique_id=191606935]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("5_gss2c")
+theme_override_styles/pressed = ExtResource("6_h022r")
+theme_override_styles/hover = ExtResource("7_4jqwt")
+text = "⚔️ DANO
+
++5 Dano"
+
+[node name="VelocidadeButton" type="Button" parent="UpgradePanel/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1026354565]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("5_gss2c")
+theme_override_styles/pressed = ExtResource("6_h022r")
+theme_override_styles/hover = ExtResource("7_4jqwt")
+text = "🏃 VELOCIDADE
+
++20 Velocidade"

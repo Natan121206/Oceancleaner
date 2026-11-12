@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bg25xo1a0vk4p"]
+
+[ext_resource type="Script" uid="uid://6h36jkgdylf2" path="res://scripts/inimigo.gd" id="1_inim"]
+[ext_resource type="Texture2D" uid="uid://ddwvyfr6ueeor" path="res://assets/_unused/4b4ea8e0-d8d3-4920-b838-dc87afa85e7a.png" id="2_61lki"]
+[ext_resource type="AudioStream" uid="uid://bctrk8nmpm1nu" path="res://assets/sfx/lumora_studios-pixel-explosion-319166.mp3" id="3_21tsg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_inim"]
+radius = 30.016663
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61lki"]
+radius = 27.018513
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inim"]
+_data = {
+&"attack": SubResource("Animation_attack"),
+&"idle": SubResource("Animation_idle"),
+&"walk": SubResource("Animation_walk")
+}
+
+[node name="inimigo" type="CharacterBody2D" unique_id=29915603]
+modulate = Color(0.3074179, 0.43489748, 0.87921506, 1)
+texture_filter = 1
+script = ExtResource("1_inim")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=589961991]
+position = Vector2(-11.749997, -27.875002)
+scale = Vector2(0.6194445, 0.6167582)
+texture = ExtResource("2_61lki")
+hframes = 6
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536473521]
+position = Vector2(-6, -31)
+shape = SubResource("CircleShape2D_inim")
+
+[node name="AttackArea" type="Area2D" parent="CollisionShape2D" unique_id=951492629]
+position = Vector2(100, -8)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/AttackArea" unique_id=2122877724]
+position = Vector2(-100, 10)
+shape = SubResource("CircleShape2D_61lki")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=138493514]
+libraries/ = SubResource("AnimationLibrary_inim")
+
+[node name="SomMorte" type="AudioStreamPlayer2D" parent="." unique_id=907409173]
+stream = ExtResource("3_21tsg")

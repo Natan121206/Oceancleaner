@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dolsyfjp0nd7"]
+
+[ext_resource type="Script" uid="uid://dm5c0q66c6b35" path="res://scenes/ui/start_screen.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://ba2wnd55djkw2" path="res://assets/sfx/atlasaudio-retrowave-574029.mp3" id="4_kolwf"]
+
+[node name="StartScreen" type="Control" unique_id=1012041993]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="MusicaLobby" type="AudioStreamPlayer" parent="." unique_id=1684640122]
+stream = ExtResource("4_kolwf")
+autoplay = true

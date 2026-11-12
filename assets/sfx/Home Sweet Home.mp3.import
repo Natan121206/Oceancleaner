@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m7otv8pndgaw"
+path="res://.godot/imported/Home Sweet Home.mp3-a9adee07d1d8d114cc37df9803a032e3.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Home Sweet Home.mp3"
+dest_files=["res://.godot/imported/Home Sweet Home.mp3-a9adee07d1d8d114cc37df9803a032e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
