@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/inimigo_suco.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/suco.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://bctrk8nmpm1nu" path="res://assets/sfx/lumora_studios-pixel-explosion-319166.mp3" id="3_sfx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_suco"]
+radius = 28.0
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_suco"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="inimigo_suco" type="CharacterBody2D"]
+script = ExtResource("1_script")
+max_health = 30
+speed = 70.0
+damage = 8
+xp_reward = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -55)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_suco")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("AnimationLibrary_suco")
+
+[node name="SomMorte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sfx")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bm8hni41eq27i"]
+
+[ext_resource type="AudioStream" uid="uid://b7gurooowpqmw" path="res://assets/sfx/juliush-space-fantasy-part-1-symphonic-adventure-music-430173.mp3" id="1_denxe"]
+[ext_resource type="Script" path="res://scripts/musica_fundo.gd" id="2_script"]
+
+[node name="MusicaFundo" type="AudioStreamPlayer"]
+stream = ExtResource("1_denxe")
+volume_db = -4.269
+autoplay = true
+script = ExtResource("2_script")
