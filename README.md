@@ -4,7 +4,7 @@ Um jogo educativo no estilo *survivor* (inspirado em Vampire Survivors), onde vo
 
 > Projeto desenvolvido como parte de uma atividade de extensão universitária, conectando conhecimento acadêmico, tecnologia e sustentabilidade.
 
-🔗 **[Jogar versão beta no navegador]([https://scintillating-zuccutto-ecd067.netlify.app](https://enchanting-croissant-efd0e3.netlify.app))** — projeto em desenvolvimento, pode conter bugs e funcionalidades incompletas
+🔗 **[Jogar versão beta no navegador]((https://enchanting-croissant-efd0e3.netlify.app))** — projeto em desenvolvimento, pode conter bugs e funcionalidades incompletas
 
 ---
 
